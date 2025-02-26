@@ -8,7 +8,7 @@ from langchain.schema import Document
 
 # Set API keys
 os.environ["PINECONE_API_KEY"] = "pcsk_JWfDU_QZB4ypC4J6SxQzpjE7B1X3nMftTd33roK1XsH3BPtPhpvT9qjuek7whACLh4CtR"
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDcfQFFM_PEZxJTxH5KmoZANch0qMvZ2VE"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyDpuCnyVOzzhxjJhXTL-1yTsgcZiYLoMUM"
 
 EMBEDDING_DIMENSION = 768  
 
