@@ -7,6 +7,7 @@ import os
 from langchain_pinecone import PineconeVectorStore
 from google.generativeai import configure
 from dotenv import load_dotenv
+
 load_dotenv()  # Load environment variables from a .env file
 
 configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -14,7 +15,7 @@ configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # Streamlit UI
 st.set_page_config(page_title="Chitral Travel Agent", layout="wide")
 st.title("🌍 Chitral Travel Agent")
-st.write("Ask me anything about Chitral! Let's plan your adventure.")
+st.write("Ask me anything about Chitral! Let's plan your adventure. 🚀")
 
 # Load API keys from environment variables
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
@@ -44,7 +45,10 @@ qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=re
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "🌟 Welcome to Chitral Travel Agent! I'm here to help you explore the breathtaking beauty of Chitral. How can I assist you today?"}
+        {
+            "role": "assistant",
+            "content": "🌟 Welcome to Chitral Travel Agent! I'm here to help you explore the breathtaking beauty of Chitral. How can I assist you today?",
+        }
     ]
 
 # Display chat history
@@ -63,9 +67,14 @@ if user_input:
     
     # Get AI response
     response = qa_chain.run(user_input)
-    
-    if "doesn't offer any information This text doesn't mention Lahore" in response or "not found" in response.lower():
-        response = "I couldn't find specific details on that, but I'd love to help you explore Chitral! Ask me about places to visit, culture, or adventure spots. 😊"
+
+    # Handle cases where no relevant information is found
+    if any(phrase in response.lower() for phrase in ["not found", "no information", "doesn't offer any information"]):
+        response = (
+            "Hmm, I couldn't find any details on that right now. 🤔 "
+            "But don't worry, I'm always learning and updating! "
+            "Feel free to ask about something else, or check back later for more insights. 😊"
+        )
 
     # Enhance response with storytelling
     response = f"🌄 {response}"
