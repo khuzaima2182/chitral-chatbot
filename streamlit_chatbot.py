@@ -68,8 +68,15 @@ if user_input:
     # Get AI response
     response = qa_chain.run(user_input)
 
-
-    if any(phrase in response.lower() for phrase in ["not found", "no information", "doesn't offer any information","This text doesn't mention","This text focuses"]):
+# Check if response lacks relevant information
+    if any(phrase in response.lower() for phrase in [
+        "not found", 
+        "no information", 
+        "doesn't offer any information",
+        "this text doesn't mention", 
+        "this text focuses", 
+        "i couldn't find"
+    ]):
         response = (
             "Hmm, I couldn't find any details on that right now. 🤔 "
             "But don't worry, I'm always learning and updating! "
