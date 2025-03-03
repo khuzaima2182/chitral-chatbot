@@ -75,12 +75,14 @@ if user_input:
         "doesn't offer any information",
         "this text doesn't mention", 
         "this text focuses", 
-        "i couldn't find"
+        "i couldn't find",
+        "This text discusses",
+        "It does not contain"
     ]):
         response = (
             "Hmm, I couldn't find any details on that right now. 🤔 "
             "But don't worry, I'm always learning and updating! "
-            "Feel free to ask about something else, or check back later for more info. 😊"
+            "Feel free to ask about Chitral, or check back later for more info. 😊"
         )
 
     # Enhance response with storytelling
