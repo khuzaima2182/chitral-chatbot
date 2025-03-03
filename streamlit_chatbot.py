@@ -68,8 +68,8 @@ if user_input:
     # Get AI response
     response = qa_chain.run(user_input)
 
-    # Handle cases where no relevant information is found
-    if any(phrase in response.lower() for phrase in ["not found", "no information", "doesn't offer any information","This text doesn't mention"]):
+
+    if any(phrase in response.lower() for phrase in ["not found", "no information", "doesn't offer any information","This text doesn't mention","This text focuses"]):
         response = (
             "Hmm, I couldn't find any details on that right now. 🤔 "
             "But don't worry, I'm always learning and updating! "
@@ -77,7 +77,7 @@ if user_input:
         )
 
     # Enhance response with storytelling
-    response = f"🌄 {response}"
+    response = f" {response}"
     
     # Append AI response
     st.session_state.messages.append({"role": "assistant", "content": response})
