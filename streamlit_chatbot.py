@@ -69,11 +69,11 @@ if user_input:
     response = qa_chain.run(user_input)
 
     # Handle cases where no relevant information is found
-    if any(phrase in response.lower() for phrase in ["not found", "no information", "doesn't offer any information"]):
+    if any(phrase in response.lower() for phrase in ["not found", "no information", "doesn't offer any information","This text doesn't mention"]):
         response = (
             "Hmm, I couldn't find any details on that right now. 🤔 "
             "But don't worry, I'm always learning and updating! "
-            "Feel free to ask about something else, or check back later for more insights. 😊"
+            "Feel free to ask about something else, or check back later for more info. 😊"
         )
 
     # Enhance response with storytelling
